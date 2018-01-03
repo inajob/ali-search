@@ -6,9 +6,10 @@ use AliexApi\AliexIO;
 use AliexApi\Operations\ListProducts;
 use AliexApi\Operations\GetLinks;
 
-$ALI_API_KEY = apache_getenv('ALI_API_KEY',true);
-$ALI_API_TRACKING_KEY = apache_getenv('ALI_API_TRACKING_KEY',true);
-$ALI_API_SIGN = apache_getenv('ALI_API_SIGN',true);
+$secret = json_decode(file_get_contents("/var/www/app-secret/secret.json"),true);
+$ALI_API_KEY = $secret['ali-api-key'];
+$ALI_API_TRACKING_KEY = $secret['ali-api-tracking-key'];
+$ALI_API_SIGN = $secret['ali-api-sign'];
 
 
 function getLinks($out){
