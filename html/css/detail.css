@@ -1,0 +1,66 @@
+body{
+  background-color: #fdd;
+}
+
+input{
+  font-size:1.8em;
+}
+
+.clearfix:after {
+    content:"";
+    display:block;
+    clear:both;
+}
+
+.blog{
+  width:100%;
+  font-size:0.8em;
+}
+.control{
+  margin:1em;
+}
+.bottom-control{
+  text-align:center;
+  margin:1em;
+}
+.bottom-control button{
+  font-size:1.8em;
+}
+
+.footer{
+  padding:2em;
+  background-color:#933;
+  color:white;
+}
+.footer a{
+  color:white;
+}
+
+.recommend{
+  border:solid 1px black;
+  padding:5px;
+  margin:5px;
+  float:left;
+}
+
+.piece{
+  float:left;
+  border:solid #d00 1px;
+  margin:2px;
+  font-size:1em;
+  width:24%;
+}
+.piece .price{
+  background-color: #d00;
+  color:white;
+  text-align:center;
+}
+.piece div.img{
+  background-color: #ccc;
+  background-position: center center;
+  background-repeat: no-repeat;
+  margin: 0px;
+  width: 100px;
+  height: 100px;
+  background-size: cover;
+}

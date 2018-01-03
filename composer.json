@@ -1,0 +1,5 @@
+{
+  "require":{
+    "clchangnet/aliexapi": "~1.0"
+  }
+}

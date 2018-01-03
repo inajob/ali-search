@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=640">
+<meta charset="utf-8" />
+<title>激安さーち</title>
+<!--[if IE]>
+<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+<style>
+  article, aside, dialog, figure, footer, header,
+  hgroup, menu, nav, section { display: block; }
+  body,html{
+    padding:0px;
+    margin:0px;
+  }
+</style>
+<link rel="stylesheet" type="text/css" href="css/style.css"></link>
+<script src="js/vue.js"></script>
+<script src="js/script.js"></script>
+</head>
+<body>
+  <script src="../mh/mh.js"></script>
+  <h1><a href="">激安さーち</a></h1>
+  <div>aliexpressの商品を見やすく並べています。</div>
+  <div id="container">
+    <div class="control">
+      <form v-on:submit.prevent="search">
+        <input v-model="keyword" type="text" /><input v-on:click="search" type="button" value="search" />
+      </form>
+
+      <div class="clearfix">
+        <div v-for="recommend in recommends" class="recommend">
+          <a v-on:click="searchBy(recommend)">{{recommend}}</a>
+        </div>
+      </div>
+    </div>
+    <div class="clearfix">
+      <div v-for="item in items" class="piece">
+        <div class="price">{{item.localPrice}}</div>
+        <a target="_blank" :href=item.promotionUrl>
+          <div class="img" :title=item.productTitle :style=item.thumbStyle /></div>
+        </a>
+      </div>
+    </div>
+    <div class="bottom-control">
+      <div :style=nomoreStyle>no hit</div>
+      <button v-on:click="more" :style=moreStyle>more</button>
+    </div>
+  </div>
+  <hr />
+  <div class="footer">つくったひと：<a href="http://twitter.com/ina_ani" target="_blank">@ina_ani</a></div>
+
+
+</body>
+</html>
