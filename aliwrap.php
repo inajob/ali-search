@@ -66,6 +66,7 @@ function get($fields, $page) {
   error_log($ALI_API_KEY);
   error_log($ALI_API_TRACKING_KEY);
   error_log($ALI_API_SIGN);
+  error_log(var_export($secret, true));
   
   $urlAssoc = getLinks($out);
 
