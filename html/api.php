@@ -13,7 +13,7 @@ $ret = array();
 $retItems = array();
 
 for($count = $page; $count <= $page; $count ++){
-  $items = cachedGet($fields, $count);
+  $items = get($fields, $count);
   $ret = array_merge($ret, $items);
   foreach($items['result']['products'] as $value){
     $titles[] = strip_tags($value['productTitle']);
