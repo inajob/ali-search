@@ -6,7 +6,8 @@ use AliexApi\AliexIO;
 use AliexApi\Operations\ListProducts;
 use AliexApi\Operations\GetLinks;
 
-$secret = json_decode(file_get_contents("/var/www/app-secret/static.json"),true);
+$secretRaw = file_get_contents("/var/www/app-secret/static.json");
+$secret = json_decode($secretRaw, true);
 $ALI_API_KEY = $secret['ali-api-key'];
 $ALI_API_TRACKING_KEY = $secret['ali-api-tracking-key'];
 $ALI_API_SIGN = $secret['ali-api-sign'];
@@ -66,6 +67,7 @@ function get($fields, $page) {
   error_log($ALI_API_KEY);
   error_log($ALI_API_TRACKING_KEY);
   error_log($ALI_API_SIGN);
+  error_log(var_export($secretRaw, true));
   error_log(var_export($secret, true));
   
   $urlAssoc = getLinks($out);
