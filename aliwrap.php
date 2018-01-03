@@ -6,7 +6,7 @@ use AliexApi\AliexIO;
 use AliexApi\Operations\ListProducts;
 use AliexApi\Operations\GetLinks;
 
-$secret = json_decode(file_get_contents("/var/www/app-secret/secret.json"),true);
+$secret = json_decode(file_get_contents("/var/www/app-secret/static.json"),true);
 $ALI_API_KEY = $secret['ali-api-key'];
 $ALI_API_TRACKING_KEY = $secret['ali-api-tracking-key'];
 $ALI_API_SIGN = $secret['ali-api-sign'];
