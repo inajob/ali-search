@@ -45,8 +45,8 @@ function getLinks($out){
 
 function get($fields, $page) {
   global $ALI_API_KEY;
-  global $ALI_API_TRACKING_KEY
-  global $ALI_API_SIGN
+  global $ALI_API_TRACKING_KEY;
+  global $ALI_API_SIGN;
 
   $conf = new GenericConfiguration();
   $conf
