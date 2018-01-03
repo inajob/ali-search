@@ -62,6 +62,9 @@ function get($fields, $page) {
   #error_log("===start==");
   #error_log(var_export($out, true));
   #error_log("===end==");
+  error_log($ALI_API_KEY);
+  error_log($ALI_API_TRACKING_KEY);
+  error_log($ALI_API_SIGN);
   
   $urlAssoc = getLinks($out);
 
