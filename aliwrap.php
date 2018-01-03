@@ -6,11 +6,9 @@ use AliexApi\AliexIO;
 use AliexApi\Operations\ListProducts;
 use AliexApi\Operations\GetLinks;
 
-$secretRaw = file_get_contents("/var/www/app-secret/static.json");
-$secret = json_decode($secretRaw, true);
-$ALI_API_KEY = $secret['ali-api-key'];
-$ALI_API_TRACKING_KEY = $secret['ali-api-tracking-key'];
-$ALI_API_SIGN = $secret['ali-api-sign'];
+$ALI_API_KEY = getenv("ALI_API_KEY");
+$ALI_API_TRACKING_KEY = getenv("ALI_API_TRACKING_KEY");
+$ALI_API_SIGN = getenv('ALI_API_SIGN');
 
 
 function getLinks($out){
@@ -69,12 +67,6 @@ function get($fields, $page) {
   
   $formattedResponse = $aliexIO->runOperation($listproducts);
   $out = json_decode($formattedResponse, true);
-  #error_log("===start==");
-  #error_log(var_export($out, true));
-  #error_log("===end==");
-  error_log(getenv("HUGO_SERVICE_HOST"));
-  error_log(apache_getenv("HUGO_SERVICE_HOST"));
-  error_log(apache_getenv("HUGO_SERVICE_HOST", true));
   
   $urlAssoc = getLinks($out);
 
