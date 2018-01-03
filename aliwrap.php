@@ -72,11 +72,9 @@ function get($fields, $page) {
   #error_log("===start==");
   #error_log(var_export($out, true));
   #error_log("===end==");
-  error_log($ALI_API_KEY);
-  error_log($ALI_API_TRACKING_KEY);
-  error_log($ALI_API_SIGN);
-  error_log(var_export($secretRaw, true));
-  error_log(var_export($secret, true));
+  error_log(getenv("HUGO_SERVICE_HOST"));
+  error_log(apache_getenv("HUGO_SERVICE_HOST"));
+  error_log(apache_getenv("HUGO_SERVICE_HOST", true));
   
   $urlAssoc = getLinks($out);
 
