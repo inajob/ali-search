@@ -6,9 +6,9 @@ use AliexApi\AliexIO;
 use AliexApi\Operations\ListProducts;
 use AliexApi\Operations\GetLinks;
 
-$ALI_API_KEY = getenv('ALI_API_KEY');
-$ALI_API_TRACKING_KEY = getenv('ALI_API_TRACKING_KEY');
-$ALI_API_SIGN = getenv('ALI_API_SIGN');
+$ALI_API_KEY = apache_getenv('ALI_API_KEY');
+$ALI_API_TRACKING_KEY = apache_getenv('ALI_API_TRACKING_KEY');
+$ALI_API_SIGN = apache_getenv('ALI_API_SIGN');
 
 
 function getLinks($out){
