@@ -67,6 +67,7 @@ function get($fields, $page) {
   
   $formattedResponse = $aliexIO->runOperation($listproducts);
   $out = json_decode($formattedResponse, true);
+  error_log(var_export($out, true));
   
   $urlAssoc = getLinks($out);
 

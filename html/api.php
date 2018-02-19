@@ -43,5 +43,12 @@ $ret = array(
   'words' => $keys
 );
 
+$cv = $_GET['callback'];
+
 header("Content-Type: application/json; charset=utf-8");
-echo json_encode($ret);
+if(empty($cv)){
+  echo json_encode($ret);
+}else{
+  echo $cv . '(' . json_encode($ret) . ')';
+}
+
