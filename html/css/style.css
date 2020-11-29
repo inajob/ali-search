@@ -1,6 +1,9 @@
 body{
   background-color: #fdd;
 }
+h1{
+  background-color:white;
+}
 
 input{
   font-size:1.8em;
@@ -36,6 +39,7 @@ input{
   border:solid 1px black;
   padding:5px;
   margin:5px;
+  background-color:#fe9;
   float:left;
 }
 
@@ -43,7 +47,7 @@ input{
   float:left;
   border:solid #d00 1px;
   margin:2px;
-  width:100px;
+  width:120px;
   font-size:1em;
 }
 .piece .price{
@@ -56,7 +60,7 @@ input{
   background-position: center center;
   background-repeat: no-repeat;
   margin: 0px;
-  width: 100px;
-  height: 100px;
+  width: 120px;
+  height: 120px;
   background-size: cover;
 }

@@ -76,6 +76,13 @@ var container = new Vue({
           v.thumbStyle = "background-image: url('" + v["product_main_image_url"] + "');";
           that.items.push(v);
         });
+        let count = 0;
+        that.recommends = [];
+        obj.words.forEach(function(v,i){
+          if(count > 10)return;
+          that.recommends.push(v.key);
+          count ++;
+        });
       })
     },
   }

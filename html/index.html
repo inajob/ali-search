@@ -3,7 +3,19 @@
 <head>
 <meta name="viewport" content="width=640">
 <meta charset="utf-8" />
-<title>激安さーち</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>アリサーチ</title>
+<!-- ogp -->
+<meta name="description" content="AliExpressの商品をトラッキングを避けて検索できるWebサービスです。">
+<meta property="og:title"       content="アリサーチ">
+<meta property="og:description" content="AliExpressの商品をトラッキングを避けて検索できるWebサービスです。">
+<meta property="og:url"         content="http://web.inajob.tk/ali-search/">
+<meta property="og:image"       content="http://web.inajob.tk/ali-search/imgs/cover.png">
+<meta name="twitter:card"       content="summary_large_image">
+<meta name="twitter:site:id"    content="@ina_ani">
+<meta name="twitter:creator"    content="@ina_ani">
+<!-- /ogp -->
+
 <!--[if IE]>
 <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 <![endif]-->
@@ -14,6 +26,9 @@
     padding:0px;
     margin:0px;
   }
+  h1{
+    background-color:white;
+  }
 </style>
 <link rel="stylesheet" type="text/css" href="css/style.css"></link>
 <script src="js/vue.js"></script>
@@ -21,14 +36,15 @@
 </head>
 <body>
   <script src="../mh/mh.js"></script>
-  <h1><a href="">激安さーち</a></h1>
-  <div>aliexpressの商品を見やすく並べています。</div>
+  <h1><a href=""><img src="imgs/cover.png"></a></h1>
+  <div>aliexpressの商品を履歴を汚さずに検索できます。</div>
   <div id="container">
     <div class="control">
       <form v-on:submit.prevent="search">
-        <input v-model="keyword" type="text" /><input v-on:click="search" type="button" value="search" />
+        <input v-model="keyword" type="text" /><input v-on:click="search" type="button" value="検索" />
       </form>
 
+      関連ワード
       <div class="clearfix">
         <div v-for="recommend in recommends" class="recommend">
           <a v-on:click="searchBy(recommend)">{{recommend}}</a>
@@ -45,7 +61,7 @@
     </div>
     <div class="bottom-control">
       <div :style=nomoreStyle>no hit</div>
-      <button v-on:click="more" :style=moreStyle>more</button>
+      <button v-on:click="more" :style=moreStyle>もっと見る</button>
     </div>
   </div>
   <hr />
