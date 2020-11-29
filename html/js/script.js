@@ -71,9 +71,9 @@ var container = new Vue({
           that.moreStyle = "display:none;";
         }
         obj.items.forEach(function(v){
-          v.thumbUrl = v.imageUrl + "_220x220.jpg";
-          v.blog = vanishTags(v.productTitle) + "[![image](" +v.imageUrl + "_220x220.jpg)](" + v.promotionUrl + ")";
-          v.thumbStyle = "background-image: url('" + v.imageUrl + "_220x220.jpg');";
+          v.thumbUrl = v["product_main_image_url"] + "";
+          v.blog = vanishTags(v["product_title"]) + "[![image](" +v["product_main_image_url"] + ")](" + v["promotion_link"] + ")";
+          v.thumbStyle = "background-image: url('" + v["product_main_image_url"] + "');";
           that.items.push(v);
         });
       })

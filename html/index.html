@@ -37,9 +37,9 @@
     </div>
     <div class="clearfix">
       <div v-for="item in items" class="piece">
-        <div class="price">{{item.localPrice}}</div>
-        <a target="_blank" :href=item.promotionUrl>
-          <div class="img" :title=item.productTitle :style=item.thumbStyle /></div>
+        <div class="price">\{{item["target_original_price"]}}</div>
+        <a target="_blank" :href=item["promotion_link"]>
+          <div class="img" :title=item["product_title"] :style=item.thumbStyle /></div>
         </a>
       </div>
     </div>

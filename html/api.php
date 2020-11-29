@@ -1,22 +1,19 @@
 <?php
-include '../aliwrap.php';
+include '../ali.php';
 
 $keywords = $_GET['q'];
 $page = $_GET['p'];
 
-$fields = [
-  'keywords' => $keywords
-  ];
 $titles = array();
 
 $ret = array();
 $retItems = array();
 
 for($count = $page; $count <= $page; $count ++){
-  $items = get($fields, $count);
+  $items = get($keywords, $count);
   $ret = array_merge($ret, $items);
-  foreach($items['result']['products'] as $value){
-    $titles[] = strip_tags($value['productTitle']);
+  foreach($items as $value){
+    $titles[] = strip_tags($value['product_title']);
     $retItems[] = $value;
   }
 }
