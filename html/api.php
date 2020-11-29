@@ -10,8 +10,8 @@ $ret = array();
 $retItems = array();
 
 for($count = $page; $count <= $page; $count ++){
-  #$items = get($keywords, $count);
-  $items = cachedGet($keywords, $count);
+  $items = get($keywords, $count);
+  #$items = cachedGet($keywords, $count);
   $ret = array_merge($ret, $items);
   foreach($items as $value){
     $titles[] = strip_tags($value['product_title']);
