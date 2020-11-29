@@ -35,6 +35,8 @@ var container = new Vue({
     page: 1,
     moreStyle:"display:block;",
     nomoreStyle:"display:none;",
+    disableSearch: false,
+    loadingStyle:"display:none;",
   },
   methods: {
     searchBy: function(key){
@@ -43,6 +45,8 @@ var container = new Vue({
       this.items = [];
       this.moreStyle = "display:block;";
       this.nomoreStyle = "display:none;";
+      this.disableSearch = true;
+      this.loadingStyle = "display:block;";
       history.pushState(null, null, "?q=" + encodeURIComponent(this.keyword));
       this.load(this.keyword, this.page);
     },
@@ -51,10 +55,14 @@ var container = new Vue({
       this.items = [];
       this.moreStyle = "display:block;";
       this.nomoreStyle = "display:none;";
+      this.disableSearch = true;
+      this.loadingStyle = "display:block;";
       history.pushState(null, null, "?q=" + encodeURIComponent(this.keyword));
       this.load(this.keyword, this.page);
     },
     more: function(){
+      this.disableSearch = true;
+      this.loadingStyle = "display:block;";
       this.page += 1;
       this.load(this.keyword, this.page);
     },
@@ -62,6 +70,8 @@ var container = new Vue({
       var that = this;
       console.log("load");
       xhr('./api.php?p='+page+'&q=' + encodeURIComponent(q), function(obj){
+        that.disableSearch = false;
+        that.loadingStyle = "display:none;";
         console.log(obj);
         if(obj.items.length == 0){
           that.nomoreStyle = "display:block;";
@@ -105,6 +115,8 @@ function init(){
     container.keyword = options['q'];
   }
   
+  container.disableSearch = true;
+  container.loadingStyle = "display:block;";
   container.load(container.keyword, 1);
 }
 init();

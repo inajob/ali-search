@@ -38,7 +38,7 @@
   <div id="container">
     <div class="control">
       <form v-on:submit.prevent="search">
-        <input v-model="keyword" type="text" /><input v-on:click="search" type="button" value="検索" />
+        <input v-model="keyword" type="text" /><input v-on:click="search" v-bind:disabled="disableSearch" type="button" value="検索" />
       </form>
 
       関連ワード
@@ -58,7 +58,8 @@
     </div>
     <div class="bottom-control">
       <div :style=nomoreStyle>no hit</div>
-      <button v-on:click="more" :style=moreStyle>もっと見る</button>
+      <div :style=loadingStyle>読み込み中...</div>
+      <button v-on:click="more" v-bind:disabled="disableSearch" :style=moreStyle>もっと見る</button>
     </div>
   </div>
   <hr />
