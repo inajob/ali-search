@@ -57,4 +57,18 @@ function get($keywords, $page){
   return $ret;
 }
 
+function cachedGet($keywords, $page){
+  $key = $keywords .':'. $page;
+  $obj = apcu_fetch($key);
+
+  if($obj === FALSE){
+    $obj = get($keywords, $page);
+    apcu_store($key, $obj, 60 * 60); // 60 min cache
+  }else{
+    error_log("use cache");
+  }
+  return $obj;
+}
+
+
 #get("m5stack", 1);
