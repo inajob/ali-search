@@ -27,7 +27,7 @@ function simpleXmlToArray($xmlObject)
 function get($keywords, $page){
   global $appkey;
   global $secret;
-  global $tarckingId;
+  global $trackingId;
   $c = new TopClient;
   $c->appkey = $appkey;
   $c->secretKey = $secret;
@@ -44,7 +44,7 @@ function get($keywords, $page){
   $req->setSort("SALE_PRICE_ASC");
   $req->setTargetCurrency("JPY");
   $req->setTargetLanguage("EN");
-  $req->setTrackingId($trackigId);
+  $req->setTrackingId($trackingId);
   # $req->setShipToCountry("ES");
   # $req->setDeliveryDays("3");
   $resp = $c->execute($req);
@@ -58,7 +58,7 @@ function get($keywords, $page){
 }
 
 function cachedGet($keywords, $page){
-  $key = $keywords .':'. $page;
+  $key = urlencode($keywords) .':'. $page;
 
   $memcache = new Memcached();
   $memcache->addServer('memcached', 11211);
@@ -69,7 +69,7 @@ function cachedGet($keywords, $page){
     $obj = get($keywords, $page);
     $memcache->set($key, $obj, 60 * 60); // 60 min cache
   }else{
-    error_log("use cache");
+    error_log("use cache". $key);
   }
   return $obj;
 }
