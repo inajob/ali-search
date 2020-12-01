@@ -62,9 +62,10 @@ function cachedGet($keywords, $page){
 
   $memcache = new Memcached();
   $memcache->addServer('memcached', 11211);
-  $obj = $memcache->get('key');
+  $obj = $memcache->get($key);
 
   if($obj === FALSE){
+    error_log("cache false " . $key);
     $obj = get($keywords, $page);
     $memcache->set($key, $obj, 60 * 60); // 60 min cache
   }else{
