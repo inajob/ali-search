@@ -24,7 +24,7 @@ function simpleXmlToArray($xmlObject)
   return $array;
 }
 
-function get($keywords, $page){
+function get($keywords, $page, $sort){
   global $appkey;
   global $secret;
   global $trackingId;
@@ -40,8 +40,18 @@ function get($keywords, $page){
   # $req->setMinSalePrice("15");
   $req->setPageNo($page);
   $req->setPageSize("50");
-  # $req->setPlatformProductType("TMALL");
-  $req->setSort("SALE_PRICE_ASC");
+  $req->setPlatformProductType("ALL");
+  error_log("sort $sort");
+  switch($sort){
+  case 0:
+    $req->setSort("SALE_PRICE_ASC");
+    break;
+  case 1:
+    $req->setSort("SALE_PRICE_DESC");
+    break;
+  case 2:
+    break;
+  }
   $req->setTargetCurrency("JPY");
   $req->setTargetLanguage("EN");
   $req->setTrackingId($trackingId);
@@ -57,8 +67,8 @@ function get($keywords, $page){
   return $ret;
 }
 
-function cachedGet($keywords, $page){
-  $key = urlencode($keywords) .':'. $page;
+function cachedGet($keywords, $page, $sort){
+  $key = urlencode($keywords) .':'. $page . ':' . $sort;
 
   $memcache = new Memcached();
   $memcache->addServer('memcached', 11211);

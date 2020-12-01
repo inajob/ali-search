@@ -24,6 +24,7 @@ var container = new Vue({
     items:[
     ],
     keyword: keyword,
+    sortMode: "0",
     recommends: [
       "atmega32u4",
       "display spi",
@@ -47,8 +48,8 @@ var container = new Vue({
       this.nomoreStyle = "display:none;";
       this.disableSearch = true;
       this.loadingStyle = "display:block;";
-      history.pushState(null, null, "?q=" + encodeURIComponent(this.keyword));
-      this.load(this.keyword, this.page);
+      history.pushState(null, null, "?q=" + encodeURIComponent(this.keyword) + "&s=" + this.sortMode);
+      this.load(this.keyword, this.page, this.sortMode);
     },
     search: function(){
       this.page = 1;
@@ -57,19 +58,19 @@ var container = new Vue({
       this.nomoreStyle = "display:none;";
       this.disableSearch = true;
       this.loadingStyle = "display:block;";
-      history.pushState(null, null, "?q=" + encodeURIComponent(this.keyword));
-      this.load(this.keyword, this.page);
+      history.pushState(null, null, "?q=" + encodeURIComponent(this.keyword) + "&s=" + this.sortMode);
+      this.load(this.keyword, this.page, this.sortMode);
     },
     more: function(){
       this.disableSearch = true;
       this.loadingStyle = "display:block;";
       this.page += 1;
-      this.load(this.keyword, this.page);
+      this.load(this.keyword, this.page, this.sortMode);
     },
-    load: function(q, page){
+    load: function(q, page, sortMode){
       var that = this;
       console.log("load");
-      xhr('./api.php?p='+page+'&q=' + encodeURIComponent(q), function(obj){
+      xhr('./api.php?p='+page+'&q=' + encodeURIComponent(q) + '&s=' + sortMode, function(obj){
         that.disableSearch = false;
         that.loadingStyle = "display:none;";
         console.log(obj);
@@ -113,11 +114,14 @@ function init(){
       options[kv[0]] = decodeURIComponent(kv[1]);
     });
     container.keyword = options['q'];
+    if(options['s']){
+      container.sortMode = options['s'];
+    }
   }
   
   container.disableSearch = true;
   container.loadingStyle = "display:block;";
-  container.load(container.keyword, 1);
+  container.load(container.keyword, 1, container.sortMode);
 }
 init();
 

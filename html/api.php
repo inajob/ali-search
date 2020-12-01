@@ -3,6 +3,11 @@ include '../ali.php';
 
 $keywords = $_GET['q'];
 $page = $_GET['p'];
+$sort = 0;
+
+if(isset($_GET['s'])){
+  $sort = $_GET['s'];
+}
 
 $titles = array();
 
@@ -10,8 +15,8 @@ $ret = array();
 $retItems = array();
 
 for($count = $page; $count <= $page; $count ++){
-  #$items = get($keywords, $count);
-  $items = cachedGet($keywords, $count);
+  #$items = get($keywords, $count, $sort);
+  $items = cachedGet($keywords, $count, $sort);
   $ret = array_merge($ret, $items);
   foreach($items as $value){
     $titles[] = strip_tags($value['product_title']);

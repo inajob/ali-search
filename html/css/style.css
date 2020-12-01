@@ -5,7 +5,7 @@ h1{
   background-color:white;
 }
 
-input{
+input,select{
   font-size:1.8em;
 }
 
@@ -14,9 +14,12 @@ input{
     display:block;
     clear:both;
 }
+.query{
+  width: 90%;
+}
 
 .control{
-  margin:1em;
+  margin:0em;
 }
 .bottom-control{
   text-align:center;

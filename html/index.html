@@ -38,7 +38,13 @@
   <div id="container">
     <div class="control">
       <form v-on:submit.prevent="search">
-        <input v-model="keyword" type="text" /><input v-on:click="search" v-bind:disabled="disableSearch" type="button" value="検索" />
+        <input class="query" v-model="keyword" type="text" />
+        <select v-model="sortMode">
+          <option value="0">安い順</option>
+          <option value="1">高い順</option>
+          <option value="2">おススメ順</option>
+        </select>
+        <input v-on:click="search" v-bind:disabled="disableSearch" type="button" value="検索" />
       </form>
 
       関連ワード
