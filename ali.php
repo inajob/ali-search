@@ -59,11 +59,14 @@ function get($keywords, $page){
 
 function cachedGet($keywords, $page){
   $key = $keywords .':'. $page;
-  $obj = apcu_fetch($key);
+
+  $memcache = new Memcached();
+  $memcache->addServer('memcached', 11211);
+  $obj = $memcache->get('key');
 
   if($obj === FALSE){
     $obj = get($keywords, $page);
-    apcu_store($key, $obj, 60 * 60); // 60 min cache
+    $memcache->set($key, $obj, 60 * 60); // 60 min cache
   }else{
     error_log("use cache");
   }
