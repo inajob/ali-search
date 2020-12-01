@@ -76,7 +76,7 @@ function cachedGet($keywords, $page, $sort){
 
   if($obj === FALSE){
     error_log("cache false " . $key);
-    $obj = get($keywords, $page);
+    $obj = get($keywords, $page, $sort);
     $memcache->set($key, $obj, 60 * 60); // 60 min cache
   }else{
     error_log("use cache". $key);
