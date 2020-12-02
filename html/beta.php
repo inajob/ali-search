@@ -7,7 +7,6 @@
 <title>アリサーチ</title>
 <!-- ogp -->
 <meta name="description" content="AliExpressのシンプルな商品検索サービスです。">
-<meta property="og:title"       content="アリサーチ">
 <meta property="og:description" content="AliExpressのシンプルな商品検索サービスです。">
 <meta property="og:url"         content="http://web.inajob.tk/ali-search/">
 <?php
@@ -16,6 +15,7 @@ include '../ali.php';
 
 $img = "";
 $enableOGP = false;
+$title = "";
 
 if(strpos($_SERVER['HTTP_USER_AGENT'], "Twitterbot") === 0){
   $enableOGP = true;
@@ -30,6 +30,7 @@ if($enableOGP){
     $img = "OGP";
   }else{
       $keywords = $_GET['q'];
+      $title = ' - ' . htmlspecialchars($_GET['q']) . "の検索結果";
       $page = 0;
       $sort = 0;
       if(isset($_GET['s'])){
@@ -44,6 +45,7 @@ if($enableOGP){
   }
 }
 
+echo '<meta property="og:title"       content="アリサーチ'. $title .'">'
 echo '<meta property="og:image" content="' . $img . '">';
 
 ?>
