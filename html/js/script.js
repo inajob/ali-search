@@ -14,6 +14,8 @@ function xhr(url, f, ef){
         }catch(e){
           if(ef){ef()}
         }
+      }else{
+        if(ef){ef()}
       }
     }
   };
