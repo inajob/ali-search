@@ -4,7 +4,6 @@
 <meta name="viewport" content="width=640">
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>アリサーチ</title>
 <!-- ogp -->
 <meta name="description" content="AliExpressのシンプルな商品検索サービスです。">
 <meta property="og:description" content="AliExpressのシンプルな商品検索サービスです。">
@@ -45,7 +44,8 @@ if($enableOGP){
   }
 }
 
-echo '<meta property="og:title"       content="アリサーチ'. $title .'">'
+echo '<title>アリサーチ'.$title.'</title>';
+echo '<meta property="og:title"       content="アリサーチ'. $title .'">';
 echo '<meta property="og:image" content="' . $img . '">';
 
 ?>
