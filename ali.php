@@ -41,7 +41,6 @@ function get($keywords, $page, $sort){
   $req->setPageNo($page);
   $req->setPageSize("50");
   $req->setPlatformProductType("ALL");
-  error_log("sort $sort");
   switch($sort){
   case 0:
     $req->setSort("SALE_PRICE_ASC");
@@ -79,7 +78,7 @@ function cachedGet($keywords, $page, $sort){
     $obj = get($keywords, $page, $sort);
     $memcache->set($key, $obj, 60 * 60); // 60 min cache
   }else{
-    error_log("use cache". $key);
+    error_log("use cache ". $key);
   }
   return $obj;
 }

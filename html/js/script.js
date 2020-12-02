@@ -2,14 +2,18 @@
 window.addEventListener('load', function(){
 
 // GET request
-function xhr(url, f){
+function xhr(url, f, ef){
   var xmlhttp = new XMLHttpRequest();
   xmlhttp.open("GET", url);
   xmlhttp.onreadystatechange = function(){
     if(xmlhttp.readyState == 4){
       if(xmlhttp.status == 200){
-        var obj = JSON.parse(xmlhttp.responseText);
-        if(f){f(obj)}
+        try{
+          var obj = JSON.parse(xmlhttp.responseText);
+          if(f){f(obj)}
+        }catch(e){
+          if(ef){ef()}
+        }
       }
     }
   };
@@ -35,6 +39,7 @@ var container = new Vue({
     ],
     page: 1,
     moreStyle:"display:block;",
+    errorStyle:"display:none;",
     nomoreStyle:"display:none;",
     disableSearch: false,
     loadingStyle:"display:none;",
@@ -69,6 +74,7 @@ var container = new Vue({
     },
     load: function(q, page, sortMode){
       var that = this;
+      that.errorStyle = "display:none;";
       console.log("load");
       xhr('./api.php?p='+page+'&q=' + encodeURIComponent(q) + '&s=' + sortMode, function(obj){
         that.disableSearch = false;
@@ -94,6 +100,11 @@ var container = new Vue({
           that.recommends.push(v.key);
           count ++;
         });
+      }, function(){
+        that.errorStyle = "display:block;";
+        that.loadingStyle = "display:none;";
+        that.moreStyle = "display:none;";
+        that.disableSearch = false;
       })
     },
   }

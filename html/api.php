@@ -15,12 +15,17 @@ $ret = array();
 $retItems = array();
 
 for($count = $page; $count <= $page; $count ++){
-  #$items = get($keywords, $count, $sort);
-  $items = cachedGet($keywords, $count, $sort);
-  $ret = array_merge($ret, $items);
-  foreach($items as $value){
-    $titles[] = strip_tags($value['product_title']);
-    $retItems[] = $value;
+  if(!empty(getenv("DEBUG"))){
+    $items = get($keywords, $count, $sort);
+  }else{
+    $items = cachedGet($keywords, $count, $sort);
+  }
+
+  if($items !== NULL){
+    foreach($items as $value){
+      $titles[] = strip_tags($value['product_title']);
+      $retItems[] = $value;
+    }
   }
 }
 
@@ -46,7 +51,10 @@ $ret = array(
   'words' => $keys
 );
 
-$cv = $_GET['callback'];
+$cv = '';
+if(isset($_GET['callback'])){
+  $cv = $_GET['callback'];
+}
 
 header("Content-Type: application/json; charset=utf-8");
 if(empty($cv)){

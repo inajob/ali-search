@@ -63,8 +63,9 @@
       </div>
     </div>
     <div class="bottom-control">
-      <div :style=nomoreStyle>no hit</div>
-      <div :style=loadingStyle>読み込み中...</div>
+      <div :style=nomoreStyle>該当なし</div>
+      <div :style=errorStyle>エラー</div>
+      <div class="spinner" :style=loadingStyle>読み込み中...</div>
       <button v-on:click="more" v-bind:disabled="disableSearch" :style=moreStyle>もっと見る</button>
     </div>
   </div>
