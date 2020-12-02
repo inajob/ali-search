@@ -20,13 +20,24 @@ $enableOGP = false;
 if(strpos($_SERVER['HTTP_USER_AGENT'], "Twitterbot") === 0){
   $enableOGP = true;
 }
+if(!isset($_GET['q'])){
+  $enableOGP = false;
+}
 
 $img = "http://web.inajob.tk/ali-search/imgs/cover.png";
 if($enableOGP){
   if(!empty(getenv("DEBUG"))){
     $img = "OGP";
   }else{
-    $items = cachedGet($keywords, $count, $sort);
+      $keywords = $_GET['q'];
+      $page = 0;
+      $sort = 0;
+      if(isset($_GET['s'])){
+        $sort = $_GET['s'];
+      }
+
+
+    $items = cachedGet($keywords, $page, $sort);
     if($items !== NULL){
       $img = $items[0]['product_main_image_url'];
     }
