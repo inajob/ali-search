@@ -30,7 +30,7 @@ if($enableOGP){
   }else{
       $keywords = $_GET['q'];
       $title = ' - ' . htmlspecialchars($_GET['q']) . "の検索結果";
-      $page = 0;
+      $page = 1;
       $sort = 0;
       if(isset($_GET['s'])){
         $sort = $_GET['s'];
